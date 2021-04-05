@@ -1,0 +1,34 @@
+
+<h1>Öğrenci Listesi</h1>
+
+
+<table>
+  <tr>
+    <td><input  type="text" [(ngModel)]="ogrenciFilter.firstName" ></td>
+    <td><input  type="text" [(ngModel)]="ogrenciFilter.lastName" ></td>
+    <td><input  type="text" [(ngModel)]="ogrenciFilter.email"  ></td>
+    <td><button name="btnSearch" value="Ara" (click)="sorgulamaYap()">Ara</button></td>
+    <td><button name="btnClean" value="Ara" (click)="temizle()">Temizle</button></td>
+  </tr>
+</table>
+
+<table>
+  <tr style="font-weight: bold">
+    <td >Numara</td>
+    <td>Adı</td>
+    <td>Soyadı</td>
+    <td>Email</td>
+    <td>Telefon Numarası</td>
+  </tr>
+  <tr *ngFor="let ogrenci of ogrenciList" (click)="selectUsers($event, ogrenci);">
+    <td >{{ ogrenci.employeeId }}</td>
+    <td >{{ ogrenci.firstName }}</td>
+    <td >{{ ogrenci.lastName }}</td>
+    <td>{{ ogrenci.email }}</td>
+    <td>{{ ogrenci.phoneNumber }}</td>
+  </tr>
+</table>
+
+
+
+

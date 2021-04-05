@@ -1,0 +1,28 @@
+
+
+  <h1>Öğrenci  Ekleme</h1>
+  <table>
+    <tr>
+      <td><label>Adı:</label></td>
+      <td><input type="text" name="firstname"  [(ngModel)]="ogrenci.firstName" [maxLength]="20" ></td>
+    </tr>
+    <tr>
+      <td><label>Soyadı:</label></td>
+      <td><input type="text" name="lastname" [(ngModel)]="ogrenci.lastName" [maxLength]="25"></td>
+    </tr>
+    <tr>
+      <td><label>Email:</label></td>
+      <td> <input type="text" nam="email"  [(ngModel)]="ogrenci.email" [maxLength]="25"></td>
+    </tr>
+    <tr>
+      <td><label>Telefon Numarası:</label></td>
+      <td><input  type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'')"  [(ngModel)]="ogrenci.phoneNumber" [maxLength]="20"></td>
+    </tr>d
+    <tr>
+      <td><input type="button" class="btn btn-info" (click)="addEmployee()" value="Ekle" /></td>
+      <td></td>
+    </tr>
+  </table>
+
+
+
