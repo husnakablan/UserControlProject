@@ -19,13 +19,18 @@
     <td>Soyadı</td>
     <td>Email</td>
     <td>Telefon Numarası</td>
+    <td>Guncelle</td>
+    <td>Sil</td>
   </tr>
-  <tr *ngFor="let ogrenci of ogrenciList" (click)="selectUsers($event, ogrenci);">
-    <td >{{ ogrenci.employeeId }}</td>
-    <td >{{ ogrenci.firstName }}</td>
-    <td >{{ ogrenci.lastName }}</td>
+  <tr *ngFor="let ogrenci of ogrenciList" >
+    <td> {{ ogrenci.employeeId }}</td>
+    <td>{{ ogrenci.firstName }}</td>
+    <td>{{ ogrenci.lastName }}</td>
     <td>{{ ogrenci.email }}</td>
     <td>{{ ogrenci.phoneNumber }}</td>
+    <td><a routerLink="/ogrenci-guncelleme/{{ogrenci.employeeId}}" >
+      <button name="btnUpdate" value="Guncelle" >Guncelle</button></a></td>
+    <td> <button name="btnDelete" value="Sil" (click)="deleteUser(ogrenci)">Sil</button></td>
   </tr>
 </table>
 

@@ -3,6 +3,7 @@ import {OgrenciService} from '../../services/ogrenci.service';
 import {Ogrenci} from '../../model/ogrenci';
 import {Observable, Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
+import {routes} from '../../../app-routes';
 
 @Component({
   selector: 'app-ogrenci-listeleme',
@@ -25,6 +26,16 @@ export class OgrenciListelemeComponent implements OnInit {
 
   public selectUsers(event: any, user: Ogrenci) {
     console.log('seçim doğru' + JSON.stringify(user));
+  }
+
+  public deleteUser(user: Ogrenci){
+    this.service.deleteUser(user).subscribe(value => {
+      console.log('seçim doğru' + JSON.stringify(user));
+      alert('Kullanıcı başarılı bir şekilde silindi');
+      this.sorgulamaYap();
+    }, error => {
+      alert('Kullanıcı hata aldı' + JSON.stringify(error));
+    });
   }
 
   public sorgulamaYap() {

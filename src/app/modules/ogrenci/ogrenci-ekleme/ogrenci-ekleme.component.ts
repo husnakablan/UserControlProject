@@ -11,17 +11,24 @@ import {OgrenciService} from '../../services/ogrenci.service';
 export class OgrenciEklemeComponent implements OnInit {
 
   constructor(private service: OgrenciService) { }
-
+  employeeId = null  ;
   ogrenci = new Ogrenci();
 
   ngOnInit(): void {
   }
 
   addEmployee() {
-    if (  this.ogrenci.firstName != null ) {
-      alert('kayıt başarısız123');
+    if (this.ogrenci.firstName != null) {
+      this.service.addEmployee(this.ogrenci).subscribe(value => {
+        this.employeeId = value;
+        if (this.employeeId == null) {
+          alert('kayıt başarısız1');
+        } else {
+          alert('kayıt başarılı3');
+        }
+      });
     } else {
-      alert('kayıt başarısız123');
+      alert('kayıt başarısız2');
     }
   }
 

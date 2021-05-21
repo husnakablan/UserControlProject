@@ -17,7 +17,7 @@
     <tr>
       <td><label>Telefon Numarası:</label></td>
       <td><input  type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'')"  [(ngModel)]="ogrenci.phoneNumber" [maxLength]="20"></td>
-    </tr>d
+    </tr>
     <tr>
       <td><input type="button" class="btn btn-info" (click)="addEmployee()" value="Ekle" /></td>
       <td></td>

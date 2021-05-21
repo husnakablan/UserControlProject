@@ -8,12 +8,14 @@ import {RouterModule} from '@angular/router';
 import {routes} from './app-routes';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { OgrenciGuncellemeComponent } from './modules/ogrenci/ogrenci-guncelleme/ogrenci-guncelleme.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     OgrenciListelemeComponent,
     OgrenciEklemeComponent,
+    OgrenciGuncellemeComponent,
   ],
   imports: [
     BrowserModule,

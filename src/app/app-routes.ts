@@ -1,6 +1,7 @@
 import {Routes} from '@angular/router';
 import {OgrenciListelemeComponent} from './modules/ogrenci/ogrenci-listeleme/ogrenci-listeleme.component';
 import {OgrenciEklemeComponent} from './modules/ogrenci/ogrenci-ekleme/ogrenci-ekleme.component';
+import {OgrenciGuncellemeComponent} from './modules/ogrenci/ogrenci-guncelleme/ogrenci-guncelleme.component';
 
 export const routes: Routes = [{
     path: 'ogrenci-listeleme',
@@ -14,4 +15,8 @@ export const routes: Routes = [{
     path: '',
     redirectTo: 'ogrenci-listeleme',
     pathMatch: 'full'
+  },
+  {
+    path: 'ogrenci-guncelleme/:userId',
+    component: OgrenciGuncellemeComponent,
   }];
