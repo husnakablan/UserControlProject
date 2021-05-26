@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {OgrenciService} from '../../services/ogrenci.service';
 import {Ogrenci} from '../../model/ogrenci';
-import {Observable, Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
-import {routes} from '../../../app-routes';
+import {Router} from '@angular/router';
+import {ConfirmDialogComponent} from '../../components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-ogrenci-listeleme',
@@ -12,10 +11,12 @@ import {routes} from '../../../app-routes';
 })
 export class OgrenciListelemeComponent implements OnInit {
 
-  constructor(private service: OgrenciService) { }
+  constructor(private service: OgrenciService,
+              private router: Router) { }
 
-  ogrenciFilter = new Ogrenci ();
-  ogrenciList: Ogrenci[] ;
+  ogrenciList: Ogrenci[];
+  pageOfOgrenci: Array<Ogrenci>;
+  ogrenciFilter = new Ogrenci();
 
   ngOnInit(): void {
     this.service.listele().subscribe(value => {
@@ -24,11 +25,32 @@ export class OgrenciListelemeComponent implements OnInit {
     });
   }
 
-  public selectUsers(event: any, user: Ogrenci) {
+  onChangePage(pageOfOgrenci: Array<any>) {
+    this.pageOfOgrenci = pageOfOgrenci;
+  }
+
+  selectUsers(event: any, user: Ogrenci) {
     console.log('seçim doğru' + JSON.stringify(user));
   }
 
-  public deleteUser(user: Ogrenci){
+  navigateForUpdate(id: number) {
+    this.router.navigateByUrl('/ogrenci-guncelleme/' + id);
+  }
+
+  deleteUser(user: Ogrenci){
+
+    // let's call our modal window
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: '400px',
+      data: {
+        title: 'Are you sure?',
+        message: 'You are about to delete user '}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      alert(`Dialog result: ${result}`);
+    })
+
     this.service.deleteUser(user).subscribe(value => {
       console.log('seçim doğru' + JSON.stringify(user));
       alert('Kullanıcı başarılı bir şekilde silindi');
@@ -38,15 +60,14 @@ export class OgrenciListelemeComponent implements OnInit {
     });
   }
 
-  public sorgulamaYap() {
+  sorgulamaYap() {
     this.service.sorgula(this.ogrenciFilter)
       .subscribe( value => {
       this.ogrenciList = value ;
     });
   }
 
-
-  public temizle() {
+  temizle() {
     this.ogrenciFilter = new Ogrenci();
   }
 }

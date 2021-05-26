@@ -1,38 +1,57 @@
+<div class="container">
+  <div class="container-fluid mt-lg-5">
 
-<h1>Öğrenci Listesi</h1>
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="card">
+          <div class="card-header pb-0">
+            <h1 class="h3 mb-3">Öğrenci Listesi</h1>
+          </div>
+          <div class="card-body">
+            <table class="table table-striped">
+              <tr>
+                <td><input  type="text" [(ngModel)]="ogrenciFilter.firstName" ></td>
+                <td><input  type="text" [(ngModel)]="ogrenciFilter.lastName" ></td>
+                <td><input  type="text" [(ngModel)]="ogrenciFilter.email"  ></td>
+                <td><div class="btn-group"><button name="btnSearch" value="Ara" class="btn btn-primary" (click)="sorgulamaYap()">Ara</button></div></td>
+                <td><div class="btn-group"><button name="btnClean" value="Ara" class="btn btn-outline-primary" (click)="temizle()">Temizle</button></div></td>
+              </tr>
+            </table>
+            <table class="table table-striped align-middle">
+              <thead>
+              <tr>
+                <th>Numara</th>
+                <th>Adı</th>
+                <th>Soyadı</th>
+                <th>Email</th>
+                <th>Telefon No</th>
+                <th>İşlemler</th>
+              </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let ogrenci of pageOfOgrenci" >
+                    <td>{{ ogrenci.employeeId }}</td>
+                    <td>{{ ogrenci.firstName }}</td>
+                    <td>{{ ogrenci.lastName }}</td>
+                    <td>{{ ogrenci.email }}</td>
+                    <td>{{ ogrenci.phoneNumber }}</td>
+                    <td>
+                      <button name="btnUpdate" data-toggle="tooltip" data-placement="top" title="Güncelle" class="btn btn-outline-success me-lg-2" value="Güncelle" (click)="navigateForUpdate(ogrenci.employeeId)"><i class="fa fa-user-edit"></i></button>
+                      <button name="btnDelete" data-toggle="tooltip" data-placement="top" title="Sil" class="btn btn-outline-danger" value="Sil" (click)="deleteUser(ogrenci)"><i class="fa fa-trash"></i></button>
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+            <div class="align-items-center">
+              <app-pagination [items]="ogrenciList" [pageSize]="5" (changePage)="onChangePage($event)"></app-pagination>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-
-<table>
-  <tr>
-    <td><input  type="text" [(ngModel)]="ogrenciFilter.firstName" ></td>
-    <td><input  type="text" [(ngModel)]="ogrenciFilter.lastName" ></td>
-    <td><input  type="text" [(ngModel)]="ogrenciFilter.email"  ></td>
-    <td><button name="btnSearch" value="Ara" (click)="sorgulamaYap()">Ara</button></td>
-    <td><button name="btnClean" value="Ara" (click)="temizle()">Temizle</button></td>
-  </tr>
-</table>
-
-<table>
-  <tr style="font-weight: bold">
-    <td >Numara</td>
-    <td>Adı</td>
-    <td>Soyadı</td>
-    <td>Email</td>
-    <td>Telefon Numarası</td>
-    <td>Guncelle</td>
-    <td>Sil</td>
-  </tr>
-  <tr *ngFor="let ogrenci of ogrenciList" >
-    <td> {{ ogrenci.employeeId }}</td>
-    <td>{{ ogrenci.firstName }}</td>
-    <td>{{ ogrenci.lastName }}</td>
-    <td>{{ ogrenci.email }}</td>
-    <td>{{ ogrenci.phoneNumber }}</td>
-    <td><a routerLink="/ogrenci-guncelleme/{{ogrenci.employeeId}}" >
-      <button name="btnUpdate" value="Guncelle" >Guncelle</button></a></td>
-    <td> <button name="btnDelete" value="Sil" (click)="deleteUser(ogrenci)">Sil</button></td>
-  </tr>
-</table>
 
 
 

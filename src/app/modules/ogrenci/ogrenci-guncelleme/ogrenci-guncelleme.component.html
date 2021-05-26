@@ -1,21 +1,34 @@
+<div class="col-12">
 <p>ogrenci-guncelleme works!</p>
-<table>
-  <tr style="font-weight: bold">
-    <td >Numara</td>
-    <td>Adı</td>
-    <td>Soyadı</td>
-    <td>Email</td>
-    <td>Telefon Numarası</td>
-  </tr>
-  <tr>
-    <td >{{ogrenci.employeeId}}</td>
-    <td ><input type="text" name="firstName"  [(ngModel)]="ogrenci.firstName" value="{{ ogrenci.firstName }}" [maxLength]="25"></td>
-    <td ><input type="text" name="lastName"  [(ngModel)]="ogrenci.lastName" value="{{ ogrenci.lastName }}" [maxLength]="25"></td>
-    <td><input type="text" name="email"  [(ngModel)]="ogrenci.email" value="{{ ogrenci.email }}" [maxLength]="25"></td>
-    <td><input type="text" name="phoneNumber"  [(ngModel)]="ogrenci.phoneNumber" value="{{ ogrenci.phoneNumber }}" [maxLength]="20"></td>
-  </tr>
-  <tr>
-    <td><input type="button"  (click)="updateEmployee()" value="Güncelle" /></td>
-    <td></td>
-  </tr>
-</table>
+
+<div class="col-8">
+  <table class="table table-striped">
+    <tr style="font-weight: bold">
+      <td >Numara</td>
+      <td>Adı</td>
+      <td>Soyadı</td>
+      <td>Email</td>
+      <td>Telefon Numarası</td>
+    </tr>
+    <tr>
+      <td >{{ogrenci.employeeId}}</td>
+      <td ><input type="text" name="firstName"  [(ngModel)]="ogrenci.firstName" value="{{ ogrenci.firstName }}" [maxLength]="25"></td>
+      <td ><input type="text" name="lastName"  [(ngModel)]="ogrenci.lastName" value="{{ ogrenci.lastName }}" [maxLength]="25"></td>
+      <td><input type="text" name="email"  [(ngModel)]="ogrenci.email" value="{{ ogrenci.email }}" [maxLength]="25"></td>
+      <td><input type="text" name="phoneNumber"  [(ngModel)]="ogrenci.phoneNumber" value="{{ ogrenci.phoneNumber }}" [maxLength]="20"></td>
+    </tr>
+  </table>
+</div>
+
+<div class="row">
+  <label class="col-4">Adı:</label>
+  <input class="col-4" type="text" name="firstName"  [(ngModel)]="ogrenci.firstName" value="{{ ogrenci.firstName }}" [maxLength]="25">
+</div>
+<div class="row">
+  <label class="col-4">Adı:</label>
+  <input class="col-4" type="text" name="firstName"  [(ngModel)]="ogrenci.firstName" value="{{ ogrenci.firstName }}" [maxLength]="25">
+</div>
+<div class="col-lg-8">
+  <input type="button" class="btn btn-danger float-end" (click)="updateEmployee()" value="Güncelle" />
+</div>
+</div>

@@ -9,6 +9,8 @@ import {routes} from './app-routes';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { OgrenciGuncellemeComponent } from './modules/ogrenci/ogrenci-guncelleme/ogrenci-guncelleme.component';
+import { PaginationComponent } from './modules/components/pagination/pagination.component';
+import { ConfirmDialogComponent } from './modules/components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { OgrenciGuncellemeComponent } from './modules/ogrenci/ogrenci-guncelleme
     OgrenciListelemeComponent,
     OgrenciEklemeComponent,
     OgrenciGuncellemeComponent,
+    PaginationComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,4 +30,4 @@ import { OgrenciGuncellemeComponent } from './modules/ogrenci/ogrenci-guncelleme
   providers: [HttpClientModule],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

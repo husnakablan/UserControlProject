@@ -44,7 +44,7 @@ export class OgrenciGuncellemeComponent implements OnInit {
           alert('kayıt başarısız1');
         } else {
           alert('kayıt başarılı3');
-        }boo
+        }
       });
     } else {
       alert('kayıt başarısız2');
