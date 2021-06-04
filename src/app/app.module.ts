@@ -11,6 +11,9 @@ import {HttpClientModule} from '@angular/common/http';
 import { OgrenciGuncellemeComponent } from './modules/ogrenci/ogrenci-guncelleme/ogrenci-guncelleme.component';
 import { PaginationComponent } from './modules/components/pagination/pagination.component';
 import { ConfirmDialogComponent } from './modules/components/confirm-dialog/confirm-dialog.component';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { UserViewComponent } from './modules/ogrenci/user-view/user-view.component';
 
 @NgModule({
   declarations: [
@@ -20,12 +23,19 @@ import { ConfirmDialogComponent } from './modules/components/confirm-dialog/conf
     OgrenciGuncellemeComponent,
     PaginationComponent,
     ConfirmDialogComponent,
+    UserViewComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      closeButton: true,
+      progressBar: true
+    }),
+    BrowserAnimationsModule
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]

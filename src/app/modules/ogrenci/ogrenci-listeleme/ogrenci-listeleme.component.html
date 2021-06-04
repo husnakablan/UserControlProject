@@ -36,8 +36,9 @@
                     <td>{{ ogrenci.email }}</td>
                     <td>{{ ogrenci.phoneNumber }}</td>
                     <td>
+                      <button name="btnView" data-toggle="tooltip" data-placement="top" title="Görüntüle" class="btn btn-outline-info me-lg-2" value="Görüntüle" (click)="navigateForView(ogrenci.employeeId)"><i class="fa fa-user"></i></button>
                       <button name="btnUpdate" data-toggle="tooltip" data-placement="top" title="Güncelle" class="btn btn-outline-success me-lg-2" value="Güncelle" (click)="navigateForUpdate(ogrenci.employeeId)"><i class="fa fa-user-edit"></i></button>
-                      <button name="btnDelete" data-toggle="tooltip" data-placement="top" title="Sil" class="btn btn-outline-danger" value="Sil" (click)="deleteUser(ogrenci)"><i class="fa fa-trash"></i></button>
+                      <button name="btnDelete" data-toggle="tooltip" data-placement="top" title="Sil" class="btn btn-outline-danger" value="Sil" (click)="deleteUserConfirm(ogrenci)"><i class="fa fa-trash"></i></button>
                     </td>
                   </tr>
               </tbody>

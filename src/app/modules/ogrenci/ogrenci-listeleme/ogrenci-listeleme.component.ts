@@ -3,6 +3,9 @@ import {OgrenciService} from '../../services/ogrenci.service';
 import {Ogrenci} from '../../model/ogrenci';
 import {Router} from '@angular/router';
 import {ConfirmDialogComponent} from '../../components/confirm-dialog/confirm-dialog.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ToastrService} from 'ngx-toastr';
+import {MessageService} from '../../services/message.service';
 
 @Component({
   selector: 'app-ogrenci-listeleme',
@@ -12,7 +15,9 @@ import {ConfirmDialogComponent} from '../../components/confirm-dialog/confirm-di
 export class OgrenciListelemeComponent implements OnInit {
 
   constructor(private service: OgrenciService,
-              private router: Router) { }
+              private router: Router,
+              private modalService: NgbModal,
+              private messageService: MessageService) { }
 
   ogrenciList: Ogrenci[];
   pageOfOgrenci: Array<Ogrenci>;
@@ -37,26 +42,26 @@ export class OgrenciListelemeComponent implements OnInit {
     this.router.navigateByUrl('/ogrenci-guncelleme/' + id);
   }
 
-  deleteUser(user: Ogrenci){
+  navigateForView(id: number) {
+    this.router.navigateByUrl('/user-view/' + id);
+  }
 
-    // let's call our modal window
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      maxWidth: '400px',
-      data: {
-        title: 'Are you sure?',
-        message: 'You are about to delete user '}
+  deleteUserConfirm(user: Ogrenci){
+    const modalRef = this.modalService.open(ConfirmDialogComponent);
+    modalRef.componentInstance.title = 'Kullanıcı Silme';
+    modalRef.componentInstance.message = 'Bu kullanıcıyı silmek istediğinize emin misiniz?';
+    modalRef.componentInstance.confirm.subscribe(() => {
+      this.deleteUser(user);
     });
+  }
 
-    dialogRef.afterClosed().subscribe(result => {
-      alert(`Dialog result: ${result}`);
-    })
-
+   private deleteUser(user: Ogrenci){
     this.service.deleteUser(user).subscribe(value => {
-      console.log('seçim doğru' + JSON.stringify(user));
-      alert('Kullanıcı başarılı bir şekilde silindi');
-      this.sorgulamaYap();
-    }, error => {
-      alert('Kullanıcı hata aldı' + JSON.stringify(error));
+
+    this.messageService.successMessage('Kullanıcı başarılı bir şekilde silindi', 'Kullanıcı Silme');
+    this.sorgulamaYap();
+    }, err => {
+      this.messageService.errorMessage(err.toString(), 'Hata');
     });
   }
 
@@ -69,5 +74,6 @@ export class OgrenciListelemeComponent implements OnInit {
 
   temizle() {
     this.ogrenciFilter = new Ogrenci();
+    this.sorgulamaYap();
   }
 }

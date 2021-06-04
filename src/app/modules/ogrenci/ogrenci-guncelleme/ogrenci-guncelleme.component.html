@@ -1,5 +1,4 @@
 <div class="col-12">
-<p>ogrenci-guncelleme works!</p>
 
 <div class="col-8">
   <table class="table table-striped">
@@ -18,16 +17,10 @@
       <td><input type="text" name="phoneNumber"  [(ngModel)]="ogrenci.phoneNumber" value="{{ ogrenci.phoneNumber }}" [maxLength]="20"></td>
     </tr>
   </table>
+
+
 </div>
 
-<div class="row">
-  <label class="col-4">Adı:</label>
-  <input class="col-4" type="text" name="firstName"  [(ngModel)]="ogrenci.firstName" value="{{ ogrenci.firstName }}" [maxLength]="25">
-</div>
-<div class="row">
-  <label class="col-4">Adı:</label>
-  <input class="col-4" type="text" name="firstName"  [(ngModel)]="ogrenci.firstName" value="{{ ogrenci.firstName }}" [maxLength]="25">
-</div>
 <div class="col-lg-8">
   <input type="button" class="btn btn-danger float-end" (click)="updateEmployee()" value="Güncelle" />
 </div>

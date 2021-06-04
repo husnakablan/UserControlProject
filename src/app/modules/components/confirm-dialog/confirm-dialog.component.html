@@ -1,9 +1,14 @@
-<div>
-  <p mat-dialog-title>{{data.title}}</p>
-  <p display-2>{{data.message}}</p>
-
-  <div mat-dialog-actions>
-    <button mat-button mat-dialog-close (click)="onDismiss()">Hayır</button>
-    <button mat-raised-button color="primary" (click)="onConfirm()">Evet</button>
-  </div>
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-title">{{title}}</h4>
+  <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p><strong>{{message}}</strong>
+  </p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('IPTAL')">İptal</button>
+  <button type="button" ngbAutofocus class="btn btn-danger" (click)="confirmOK()">Tamam</button>
 </div>
