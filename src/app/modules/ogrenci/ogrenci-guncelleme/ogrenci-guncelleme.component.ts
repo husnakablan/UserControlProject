@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {OgrenciService} from '../../services/ogrenci.service';
 import {Ogrenci} from '../../model/ogrenci';
 import { Router, ActivatedRoute } from '@angular/router';
+import {MessageService} from '../../services/message.service';
+import {NgModel} from '@angular/forms';
 
 
 @Component({
@@ -11,19 +13,18 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class OgrenciGuncellemeComponent implements OnInit {
 
+
   constructor(private service: OgrenciService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private messageService: MessageService,
+              private router: Router) {
   }
 
   ogrenci = new Ogrenci();
   employeeId = null  ;
-
+  validated = false;
 
   ngOnInit(): void {
-   // this.route.queryParams.subscribe(params => {
-   //   console.log('asd', params.page);
-   //   console.log('asd', params);
-   // });
 
     this.route.params.subscribe(params => {
       const userId = params.userId;
@@ -36,20 +37,27 @@ export class OgrenciGuncellemeComponent implements OnInit {
   }
 
 
-  updateEmployee() {
-    if (this.ogrenci.firstName || this.ogrenci.firstName) {
+  updateEmployee(userForm: HTMLFormElement) {
+    this.validated = true;
+    if (!userForm.checkValidity()) {
+      return;
+    }
+    if (this.ogrenci.firstName || this.ogrenci.lastName) {
       this.service.updateEmployee(this.ogrenci).subscribe(value => {
         this.employeeId = value;
         if (this.employeeId == null) {
-          alert('kayıt başarısız1');
+          this.messageService.errorMessage('Güncelleme başarısız.', 'HATA');
         } else {
-          alert('kayıt başarılı3');
+          this.messageService.successMessage('Güncelleme başarılı.', 'GÜNCELLEME');
+          this.router.navigateByUrl('/ogrenci-listeleme');
         }
       });
     } else {
-      alert('kayıt başarısız2');
+      this.messageService.errorMessage('Güncelleme başarısız.', 'HATA');
     }
   }
 
-
+  validate(ngModel: NgModel) {
+    return ngModel.invalid && (ngModel.touched || this.validated);
+  }
 }

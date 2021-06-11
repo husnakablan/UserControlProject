@@ -6,7 +6,7 @@ import { OgrenciListelemeComponent } from './modules/ogrenci/ogrenci-listeleme/o
 import { OgrenciEklemeComponent } from './modules/ogrenci/ogrenci-ekleme/ogrenci-ekleme.component';
 import {RouterModule} from '@angular/router';
 import {routes} from './app-routes';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { OgrenciGuncellemeComponent } from './modules/ogrenci/ogrenci-guncelleme/ogrenci-guncelleme.component';
 import { PaginationComponent } from './modules/components/pagination/pagination.component';
@@ -14,6 +14,7 @@ import { ConfirmDialogComponent } from './modules/components/confirm-dialog/conf
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { UserViewComponent } from './modules/ogrenci/user-view/user-view.component';
+import {NgxMaskModule} from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,10 @@ import { UserViewComponent } from './modules/ogrenci/user-view/user-view.compone
       closeButton: true,
       progressBar: true
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]

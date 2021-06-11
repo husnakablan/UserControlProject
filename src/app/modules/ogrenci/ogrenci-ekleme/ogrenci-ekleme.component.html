@@ -1,28 +1,57 @@
+<h1 align="center">Öğrenci Ekleme</h1>
+<div class="col-8">
+  <form #userForm>
+    <table class="col-12">
+      <tr>
+        <td class="col-6" align="right"><label class="required-label-asterisk"><b>Adı:</b></label></td>
+        <td class="col-6">
+          <input type="text" id="firstname" name="firstname" [class.is-invalid]="validate(firstname)"
+                 class="form-control" required [(ngModel)]="ogrenci.firstName" #firstname='ngModel'
+                 [maxLength]="25"/>
+          <small class="text-danger" *ngIf="validate(firstname)">* Lütfen isim giriniz.</small>
+        </td>
+      </tr>
+      <tr>
+        <td align="right"><label class="required-label-asterisk"><b>Soyadı:</b></label></td>
+        <td><input type="text" id="lastname" name="lastname" class="form-control" required
+                   [class.is-invalid]="validate(lastname)"
+                   [(ngModel)]="ogrenci.lastName" #lastname='ngModel' [maxLength]="25"/>
+          <small class="text-danger" *ngIf="validate(lastname)">* Lütfen soyisim giriniz.</small>
+        </td>
+      </tr>
+      <tr>
+        <td align="right"><label class="required-label-asterisk"><b>Email:</b></label></td>
+        <td><input type="text" id="email" name="email" class="form-control" [class.is-invalid]="validate(email)"
+                   [(ngModel)]="ogrenci.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                   #email='ngModel'/>
+          <small class="text-danger" *ngIf="validate(email)">* Lütfen geçerli bir email giriniz.</small>
+        </td>
+      </tr>
+      <tr>
+        <td align="right"><label class="required-label-asterisk"><b>Telefon Numarası:</b></label></td>
+        <td><input type="text" id="phoneNumber" name="phoneNumber" class="form-control" required prefix="0"
+                   showMaskTyped="true"
+                   mask=" 000 000 00 00" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                   [class.is-invalid]="validate(phoneNumber)"
+                   #phoneNumber='ngModel'
+                   oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+                   [(ngModel)]="ogrenci.phoneNumber" [minLength]="10" [maxLength]="20"/>
+          <small class="text-danger" *ngIf="validate(phoneNumber)">* Lütfen telefon numarası giriniz.</small>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        </td>
+        <td align="right"><input id="btnAdd" name="btnAdd" type="button" class="btn btn-info" (click)="addEmployee(userForm)"
+                   value="Ekle"/></td>
+
+      </tr>
+    </table>
+  </form>
+</div>
 
 
-  <h1>Öğrenci  Ekleme</h1>
-  <table>
-    <tr>
-      <td><label>Adı:</label></td>
-      <td><input type="text" name="firstname"  [(ngModel)]="ogrenci.firstName" [maxLength]="20" ></td>
-    </tr>
-    <tr>
-      <td><label>Soyadı:</label></td>
-      <td><input type="text" name="lastname" [(ngModel)]="ogrenci.lastName" [maxLength]="25"></td>
-    </tr>
-    <tr>
-      <td><label>Email:</label></td>
-      <td> <input type="text" nam="email"  [(ngModel)]="ogrenci.email" [maxLength]="25"></td>
-    </tr>
-    <tr>
-      <td><label>Telefon Numarası:</label></td>
-      <td><input  type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'')"  [(ngModel)]="ogrenci.phoneNumber" [maxLength]="20"></td>
-    </tr>
-    <tr>
-      <td><input type="button" class="btn btn-info" (click)="addEmployee()" value="Ekle" /></td>
-      <td></td>
-    </tr>
-  </table>
+
 
 
 
