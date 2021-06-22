@@ -3,6 +3,8 @@ import {OgrenciListelemeComponent} from './modules/ogrenci/ogrenci-listeleme/ogr
 import {OgrenciEklemeComponent} from './modules/ogrenci/ogrenci-ekleme/ogrenci-ekleme.component';
 import {OgrenciGuncellemeComponent} from './modules/ogrenci/ogrenci-guncelleme/ogrenci-guncelleme.component';
 import {UserViewComponent} from './modules/ogrenci/user-view/user-view.component';
+import {LoginComponent} from './modules/authentication/login/login.component';
+import {RegisterComponent} from './modules/authentication/register/register.component';
 
 export const routes: Routes = [{
     path: 'ogrenci-listeleme',
@@ -14,7 +16,7 @@ export const routes: Routes = [{
   },
   {
     path: '',
-    redirectTo: 'ogrenci-listeleme',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -24,4 +26,12 @@ export const routes: Routes = [{
   {
     path: 'user-view/:userId',
     component: UserViewComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
   }];

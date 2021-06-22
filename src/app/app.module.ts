@@ -15,6 +15,9 @@ import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { UserViewComponent } from './modules/ogrenci/user-view/user-view.component';
 import {NgxMaskModule} from 'ngx-mask';
+import { LoginComponent } from './modules/authentication/login/login.component';
+import { RegisterComponent } from './modules/authentication/register/register.component';
+import { AlertComponent } from './modules/components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import {NgxMaskModule} from 'ngx-mask';
     PaginationComponent,
     ConfirmDialogComponent,
     UserViewComponent,
+    LoginComponent,
+    RegisterComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,

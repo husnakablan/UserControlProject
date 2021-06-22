@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Ogrenci} from '../model/ogrenci';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +10,11 @@ import {Ogrenci} from '../model/ogrenci';
 export class OgrenciService  {
   constructor(public http: HttpClient) {
   }
-
-  private apiUrl = 'http://localhost:8081/employee';
+  private apiUrl = `${environment.apiUrl}/employee`;
 
   listele(): Observable<Ogrenci[]> {
     return this.http.get<Ogrenci[]>(this.apiUrl);
   }
-
   deleteUser(value: Ogrenci): Observable<number> {
     return this.http.delete<number>(this.apiUrl + '/' + value.employeeId);
   }
